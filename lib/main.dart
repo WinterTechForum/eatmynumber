@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+        '/': (context) => MyHomePage(title: 'Get a Phone Number'),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/login': (context) => LoginPage(),
       },
