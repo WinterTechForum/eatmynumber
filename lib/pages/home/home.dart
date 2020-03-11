@@ -25,6 +25,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  BoxDecoration myBoxDecoration() {
+    return BoxDecoration(
+      border: Border.all(
+        width: 10,
+        color: Colors.red
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,9 +53,16 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Get Phone Number')
             ),
-            Text(
-              'Current Phone Number: $_givenPhoneNumber',
-            ),
+            Container(
+                margin: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.all(10.0),
+                decoration: myBoxDecoration(), //             <--- BoxDecoration here
+                child: Text(
+                  '$_givenPhoneNumber',
+                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                ),
+            )
+            ,
           ],
         ),
       ),

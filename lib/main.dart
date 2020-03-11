@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => MyHomePage(title: 'Get a Phone Number'),
