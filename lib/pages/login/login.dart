@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oauth2/oauth2.dart' as oauth2;
 
 
 class LoginPage extends StatefulWidget {
@@ -11,12 +10,28 @@ class LoginPage extends StatefulWidget {
 
 class LoginState extends State<LoginPage> {
   String token;
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-
+      body: Form(
+        key: _formKey,
+child: Column(
+  children: <Widget>[
+    TextFormField(
+      onSaved: (String value) {
+        token = value;
+      },
+    ),
+    RaisedButton(
+      onPressed: (){
+        _formKey.currentState.save();
+        Navigator.pushNamed(context, "/");
+      },
+    )
+  ],
+)),
     );
   }
 }
