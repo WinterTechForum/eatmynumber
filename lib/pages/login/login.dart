@@ -9,10 +9,12 @@ class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final storage = new FlutterSecureStorage();
   String apiRegisterUrl = "https://burn451.herokuapp.com/register";
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
           title: Text('Eat My Number'),
       ),
@@ -49,13 +51,21 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 40),
               RaisedButton(
                 child: Text("Sign Up"),
-                onPressed: () {
-                  API().register();
-                  Navigator.pushNamed(context, "/home");
+                onPressed: () async {
+                  bool success = await API().register();
+                  if (success) {
+                    Navigator.pushNamed(context, "/home");
+                  }
+                  showSnackBarError();
                 },
               )
             ],
           )),
     ));
+  }
+
+  void showSnackBarError(){
+    final snackbar = SnackBar(content: Text("Error reaching service"));
+    _scaffoldKey.currentState..showSnackBar(snackbar);
   }
 }
