@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/splash': (context) => Splash(),
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/home': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+        '/home': (context) => MyHomePage(title: 'Get a Phone Number'),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/login': (context) => LoginPage(),
       },
