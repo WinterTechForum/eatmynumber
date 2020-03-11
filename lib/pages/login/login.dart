@@ -45,7 +45,8 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   if (!_formKey.currentState.validate()) return;
                   _formKey.currentState.save();
-                  Navigator.pushNamed(context, "/home");
+                  final nav = Navigator.of(context);
+                  nav.popAndPushNamed("/home");
                 },
               ),
               SizedBox(height: 40),
