@@ -2,17 +2,18 @@ import 'package:eatmynumber/pages/login/login.dart';
 import 'package:eatmynumber/pages/home/home.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'themes/light.dart';
 
+void main() => runApp(MyApp());
+bool isk = true;
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Eat My Number',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightMode(),
       initialRoute: '/login',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
