@@ -11,6 +11,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _givenPhoneNumber;
+
+  void setPhoneNumber(String phone) {
+    setState(() {
+      _givenPhoneNumber = phone;
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -31,21 +38,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            RaisedButton(
+              onPressed: () {
+                setPhoneNumber("(123) 456-7890");
+              },
+              child: Text('Get Phone Number')
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+              'Current Phone Number: $_givenPhoneNumber',
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
