@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final storage = new FlutterSecureStorage();
+  String apiRegisterUrl = "https://burn451.herokuapp.com/register";
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,8 @@ class LoginPage extends StatelessWidget {
               RaisedButton(
                 child: Text("Sign Up"),
                 onPressed: () {
+                  if(!_formKey.currentState.validate()) return;
+
                   Navigator.pushNamed(context, "/");
                 },
               )
