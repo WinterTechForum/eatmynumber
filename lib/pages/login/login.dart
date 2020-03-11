@@ -7,9 +7,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    storage.read(key: "userToken").then((value) {
-      if (null != value) Navigator.pushNamed(context, "/");
-    });
     return Scaffold(
       appBar: AppBar(),
       body: Form(
