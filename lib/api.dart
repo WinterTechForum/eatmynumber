@@ -12,12 +12,12 @@ class API {
     print('Response status: ${response.statusCode}');
     if(response.statusCode != 200) return false;
     print('Response body: ${response.body}');
-    await storage.write(key: "userData", value: jsonDecode(response.body)["token"]);
+    await storage.write(key: "userToken", value: jsonDecode(response.body)["token"]);
     return true;
   }
 
   void initLease() async {
-    var token = await storage.read(key: "userData");
+    var token = await storage.read(key: "userToken");
     Map<String, String> headers = {
       'Authorization': 'Bearer $token',
     };

@@ -6,8 +6,9 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     storage.read(key: "userToken").then((value) {
-      if (null != value) Navigator.pushNamed(context, "/home");
-      else Navigator.pushNamed(context, "/login");
+      final nav = Navigator.of(context);
+      final path = null == value ? '/login' : '/home';
+      nav.popAndPushNamed(path);
     });
     return Center(
       child: Text("Eat My Number")
