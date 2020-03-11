@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       title: 'Eat My Number',
       theme: lightMode(),
       initialRoute: '/splash',

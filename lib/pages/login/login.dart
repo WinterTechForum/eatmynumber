@@ -1,5 +1,5 @@
+import 'package:eatmynumber/pages/drawer/drawer.dart';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -13,6 +13,10 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text('Eat My Number'),
+      ),
+      drawer: AppDrawer(),
         body: Form(
       key: _formKey,
       child: Container(
@@ -39,16 +43,15 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   if (!_formKey.currentState.validate()) return;
                   _formKey.currentState.save();
-                  Navigator.pushNamed(context, "/");
+                  Navigator.pushNamed(context, "/home");
                 },
               ),
               SizedBox(height: 40),
               RaisedButton(
                 child: Text("Sign Up"),
                 onPressed: () {
-                  if(!_formKey.currentState.validate()) return;
                   API().register();
-                  Navigator.pushNamed(context, "/");
+                  Navigator.pushNamed(context, "/home");
                 },
               )
             ],
