@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   _formKey.currentState.save();
-                  Navigator.pushNamed(context, "/");
+                  Navigator.pushNamed(context, "/home");
                 },
               )
             ],
