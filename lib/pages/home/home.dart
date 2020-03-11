@@ -1,3 +1,4 @@
+import 'package:eatmynumber/pages/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -41,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
+      drawer: AppDrawer(),
       body: Center(
 
         child: Column(

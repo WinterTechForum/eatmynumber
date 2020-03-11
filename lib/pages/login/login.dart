@@ -1,3 +1,4 @@
+import 'package:eatmynumber/pages/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -8,7 +9,10 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+          title: Text('Eat My Number'),
+      ),
+      drawer: AppDrawer(),
       body: Form(
           key: _formKey,
           child: Column(
