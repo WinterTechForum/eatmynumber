@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import '../../api.dart';
+
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final storage = new FlutterSecureStorage();
@@ -48,9 +50,8 @@ class LoginPage extends StatelessWidget {
               RaisedButton(
                 child: Text("Sign Up"),
                 onPressed: () {
-                  if(!_formKey.currentState.validate()) return;
-
-                  Navigator.pushNamed(context, "/");
+                  API().register();
+                  Navigator.pushNamed(context, "/home");
                 },
               )
             ],
