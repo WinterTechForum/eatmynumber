@@ -1,5 +1,6 @@
 import 'package:eatmynumber/pages/drawer/drawer.dart';
 import 'package:flutter/material.dart';
+import '../../api.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -13,6 +14,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String _givenPhoneNumber;
+
+  void getPhoneNumber() {
+    API().initLease();
+    setPhoneNumber("(123) 456-7890");
+  }
 
   void setPhoneNumber(String phone) {
     setState(() {
@@ -51,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             RaisedButton(
               onPressed: () {
-                setPhoneNumber("(123) 456-7890");
+                //
+                getPhoneNumber();
               },
               child: Text('Get Phone Number')
             ),

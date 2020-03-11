@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -17,8 +16,23 @@ class API {
     return true;
   }
 
-  void initLease(){
+  void initLease() async {
+    var token = await storage.read(key: "userData");
+    Map<String, String> headers = {
+      'Authorization': 'Bearer $token',
+    };
 
+    //POST (check out a number), input {"user_number": "..."}, return {"lease_id": "...", "leased_number": "...", "ttl": ###}
+    var response = await http.post(_baseURL + 'lease',
+        headers: headers,
+        body: {'user_number': 'TODO: put number here'});
+
+    print('Response status: ${response.statusCode}');
+    Map<String, dynamic> jsonData = json.decode(response.body);
+
+    print('Response body: ${jsonData["lease_id"]}');
+    print('Response body: ${jsonData['leased_number']}');
+    print('Response body: ${jsonData['ttl']}');
   }
 
   void extendLease(){
