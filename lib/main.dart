@@ -1,5 +1,6 @@
 import 'package:eatmynumber/pages/login/login.dart';
 import 'package:eatmynumber/pages/home/home.dart';
+import 'package:eatmynumber/pages/splash/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/splash',
       routes: {
+        '/splash': (context) => Splash(),
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => MyHomePage(title: 'Get a Phone Number'),
+        '/home': (context) => MyHomePage(title: 'Get a Phone Number'),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/login': (context) => LoginPage(),
       },
