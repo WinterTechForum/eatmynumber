@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Get Phone Number')
             ),
+            if(_givenPhoneNumber != null)
             Container(
                 margin: const EdgeInsets.all(30.0),
                 padding: const EdgeInsets.all(10.0),
@@ -61,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   '$_givenPhoneNumber',
                   style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
                 ),
-            )
+            ), Container()
             ,
           ],
         ),
