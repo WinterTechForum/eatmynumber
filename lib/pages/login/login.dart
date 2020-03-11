@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return LoginState();
-  }
-}
-
-class LoginState extends State<LoginPage> {
-  String token;
+class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  final storage = new FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         body: Form(
       key: _formKey,
@@ -32,7 +25,7 @@ class LoginState extends State<LoginPage> {
                   return null;
                 },
                 onSaved: (String value) {
-                  token = value;
+                  storage.write(key: "userToken", value: value);
                 },
               ),
               SizedBox(height: 20),
