@@ -39,7 +39,7 @@ class AppDrawer extends StatelessWidget {
   }
 
   Widget _createDrawerButton(BuildContext context,
-      {IconData icon, String text, GestureTapCallback onTap}) {
+      {IconData icon, String text}) {
     final storage = new FlutterSecureStorage();
 
     return ListTile(
@@ -60,8 +60,7 @@ class AppDrawer extends StatelessWidget {
             child: Text(text),
           )
         ],
-      ),
-      onTap: onTap,
+      )
     );
   }
 
@@ -73,7 +72,7 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           _createHeader(),
           _createDrawerItem(icon: Icons.collections_bookmark, text: 'Home'),
-          Divider(),
+          _createDrawerItem(icon: Icons.attach_money, text: 'Balance', onTap:() { Navigator.popAndPushNamed(context, "/balance"); }),
           _createDrawerButton(context, icon: Icons.delete, text: 'Delete token'),
         ],
       ),

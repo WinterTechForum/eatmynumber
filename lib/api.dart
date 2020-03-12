@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
 
 class API {
   String _baseURL = "https://burn451.herokuapp.com/";
@@ -35,19 +35,35 @@ class API {
     print('Response body: ${jsonData['ttl']}');
   }
 
-  void extendLease(){
+  void extendLease() {}
 
+  void endLease() {}
+
+  Future<int> checkFunds() async {
+    String token = await storage.read(key: "userToken");
+    var response = await http.get(_baseURL+"balance", headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode != 200) {
+      print("Response: ${response.statusCode}");
+      print("Failed to get balance!");
+      return 0;
+    }
+
+    Map<String, dynamic> jsonData = json.decode(response.body);
+    print('Response body: ${jsonData["balance"]}');
+    return jsonData["balance"];
   }
 
-  void endLease(){
+  Future<int> addFunds(int seconds) async {
+    String token = await storage.read(key: "userToken");
+    var response = await http.post(_baseURL+"balance", body: json.encode({"seconds": seconds}), headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode != 200) {
+      print("Response: ${response.statusCode}");
+      print("Failed to add to balance!");
+      return 0;
+    }
 
-  }
-
-  void checkFunds(){
-
-  }
-
-  void addFunds() {
-
+    Map<String, dynamic> jsonData = json.decode(response.body);
+    print('Response body: ${jsonData["balance"]}');
+    return jsonData["balance"];
   }
 }
