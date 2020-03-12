@@ -55,7 +55,7 @@ class API {
 
   Future<int> addFunds(int seconds) async {
     String token = await storage.read(key: "userToken");
-    var response = await http.post(_baseURL+"balance", body: json.encode({"seconds": seconds}), headers: {"Authorization": "Bearer $token"});
+    var response = await http.post(_baseURL+"balance", body: json.encode({"balance": seconds}), headers: {"Authorization": "Bearer $token"});
     if (response.statusCode != 200) {
       print("Response: ${response.statusCode}");
       print("Failed to add to balance!");
