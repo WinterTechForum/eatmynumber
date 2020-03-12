@@ -38,7 +38,7 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget _createDrawerButton(
+  Widget _createDrawerButton(BuildContext context,
       {IconData icon, String text}) {
     final storage = new FlutterSecureStorage();
 
@@ -48,7 +48,11 @@ class AppDrawer extends StatelessWidget {
           IconButton(
             icon: Icon(icon),
             onPressed: () {
-              storage.delete(key: "userToken");
+              storage.delete(key: "userToken").then((foo) {
+                final nav = Navigator.of(context);
+                nav.popAndPushNamed('/login');
+              }
+              );
             },
           ),
           Padding(
@@ -69,7 +73,7 @@ class AppDrawer extends StatelessWidget {
           _createHeader(),
           _createDrawerItem(icon: Icons.collections_bookmark, text: 'Home'),
           _createDrawerItem(icon: Icons.attach_money, text: 'Balance', onTap:() { Navigator.popAndPushNamed(context, "/balance"); }),
-          _createDrawerButton(icon: Icons.delete, text: 'Delete token'),
+          _createDrawerButton(context, icon: Icons.delete, text: 'Delete token'),
         ],
       ),
     );

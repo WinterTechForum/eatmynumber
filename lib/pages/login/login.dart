@@ -1,16 +1,19 @@
 import 'package:eatmynumber/pages/drawer/drawer.dart';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import '../../api.dart';
 
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final storage = new FlutterSecureStorage();
   String apiRegisterUrl = "https://burn451.herokuapp.com/register";
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
           title: Text('Eat My Number'),
       ),
@@ -41,20 +44,28 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   if (!_formKey.currentState.validate()) return;
                   _formKey.currentState.save();
-                  Navigator.pushNamed(context, "/home");
+                  final nav = Navigator.of(context);
+                  nav.popAndPushNamed("/home");
                 },
               ),
               SizedBox(height: 40),
               RaisedButton(
                 child: Text("Sign Up"),
-                onPressed: () {
-                  if(!_formKey.currentState.validate()) return;
-
-                  Navigator.pushNamed(context, "/");
+                onPressed: () async {
+                  bool success = await API().register();
+                  if (success) {
+                    Navigator.pushNamed(context, "/home");
+                  }
+                  showSnackBarError();
                 },
               )
             ],
           )),
     ));
+  }
+
+  void showSnackBarError(){
+    final snackbar = SnackBar(content: Text("Error reaching service"));
+    _scaffoldKey.currentState..showSnackBar(snackbar);
   }
 }
